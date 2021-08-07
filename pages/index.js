@@ -40,6 +40,14 @@ export default function Home({ exploreData, featuresData }) {
 
         <section>
           <h2 className="text-4xl font-semibold py-8">Live Anywhere</h2>
+
+          <div className="flex space-x-3 overflow-scroll scrollbar-hide p-3 -ml-3">
+            {featuresData?.map((cardData, index) => {
+              const { img, title } = cardData;
+
+              return <FeaturesCard key={index} image={img} title={title} />;
+            })}
+          </div>
         </section>
       </main>
     </div>
