@@ -6,6 +6,7 @@ import {
   ExploreCard,
   FeaturesCard,
   Jumbotron,
+  Footer,
 } from "../components";
 
 export default function Home({ exploreData, featuresData }) {
@@ -63,6 +64,8 @@ export default function Home({ exploreData, featuresData }) {
           description="Wishlists curates by Airbnb"
           buttonText="Get Inspired"
         />
+
+        <Footer />
       </main>
     </div>
   );
