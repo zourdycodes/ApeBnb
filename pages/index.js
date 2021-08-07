@@ -1,9 +1,8 @@
 import Head from "next/head";
-import { useState } from "react";
 
-import { Header, Banner, ExploreCard } from "../components";
+import { Header, Banner, ExploreCard, FeaturesCard } from "../components";
 
-export default function Home({ exploreData }) {
+export default function Home({ exploreData, featuresData }) {
   // const [data, setData] = useState(exploreData);
 
   return (
@@ -38,18 +37,28 @@ export default function Home({ exploreData }) {
             })}
           </div>
         </section>
+
+        <section>
+          <h2 className="text-4xl font-semibold py-8">Live Anywhere</h2>
+        </section>
       </main>
     </div>
   );
 }
 
 export async function getStaticProps() {
-  const response = await fetch("https://links.papareact.com/pyp");
-  const exploreData = await response.json();
+  const exploreData = await fetch("https://links.papareact.com/pyp").then(
+    (dataRes) => dataRes.json()
+  );
+
+  const featuresData = await fetch("https://links.papareact.com/zp1").then(
+    (dataRes) => dataRes.json()
+  );
 
   return {
     props: {
       exploreData,
+      featuresData,
     },
   };
 }
