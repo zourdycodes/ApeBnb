@@ -1,6 +1,12 @@
 import Head from "next/head";
 
-import { Header, Banner, ExploreCard, FeaturesCard } from "../components";
+import {
+  Header,
+  Banner,
+  ExploreCard,
+  FeaturesCard,
+  Jumbotron,
+} from "../components";
 
 export default function Home({ exploreData, featuresData }) {
   // const [data, setData] = useState(exploreData);
@@ -49,6 +55,14 @@ export default function Home({ exploreData, featuresData }) {
             })}
           </div>
         </section>
+
+        {/* JUMBOTRON */}
+        <Jumbotron
+          img="https://links.papareact.com/4cj"
+          title="The Greatest Outdoors"
+          description="Wishlists curates by Airbnb"
+          buttonText="Get Inspired"
+        />
       </main>
     </div>
   );
