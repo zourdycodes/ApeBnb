@@ -1,5 +1,7 @@
 import Head from "next/head";
 
+import { Header, Banner } from "../components";
+
 export default function Home() {
   return (
     <div className="">
@@ -9,7 +11,9 @@ export default function Home() {
       </Head>
 
       {/* HEADER */}
+      <Header />
       {/* BANNER */}
+      <Banner />
     </div>
   );
 }
