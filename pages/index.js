@@ -23,18 +23,20 @@ export default function Home({ exploreData }) {
           <h2 className="text-4xl font-semibold pb-5">Explore nearby.</h2>
 
           {/* fetch data from server */}
-          {exploreData?.map((data, index) => {
-            const { img: image, location, distance } = data;
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 ">
+            {exploreData?.map((data, index) => {
+              const { img: image, location, distance } = data;
 
-            return (
-              <ExploreCard
-                key={index}
-                image={image}
-                location={location}
-                distance={distance}
-              />
-            );
-          })}
+              return (
+                <ExploreCard
+                  key={index}
+                  image={image}
+                  location={location}
+                  distance={distance}
+                />
+              );
+            })}
+          </div>
         </section>
       </main>
     </div>
