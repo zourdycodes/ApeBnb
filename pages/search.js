@@ -1,9 +1,17 @@
-import { Footer, Header } from "../components";
+import { Footer, Header, ResultCards } from "../components";
 import { useRouter } from "next/dist/client/router";
 import { format } from "date-fns";
+import { useEffect, useState } from "react";
 
-const Search = () => {
+const Search = ({ searchResults }) => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (searchResults) {
+      setIsLoading(false);
+    }
+  }, [searchResults]);
 
   const { location, startDate, numberGuests, endDate } = router.query;
 
@@ -14,7 +22,7 @@ const Search = () => {
 
   return (
     <div>
-      <Header />
+      <Header placeholder={`${location} | ${rangeDate} | ${numberGuests}`} />
 
       <main className="flex">
         {/* LEFT CONTENT */}
@@ -34,6 +42,37 @@ const Search = () => {
             <p className="button-filter">Rooms and Beds</p>
             <p className="button-filter">More Filters</p>
           </div>
+
+          {isLoading ? (
+            <h1>Loading ...</h1>
+          ) : (
+            <div className="flex flex-col">
+              {searchResults?.map((result, index) => {
+                const {
+                  description,
+                  img,
+                  location,
+                  title,
+                  total,
+                  price,
+                  star,
+                } = result;
+
+                return (
+                  <ResultCards
+                    key={index}
+                    image={img}
+                    location={location}
+                    description={description}
+                    title={title}
+                    total={total}
+                    price={price}
+                    star={star}
+                  />
+                );
+              })}
+            </div>
+          )}
         </section>
         {/* RIGHT CONTENT */}
       </main>
@@ -44,3 +83,15 @@ const Search = () => {
 };
 
 export default Search;
+
+export async function getServerSideProps(context) {
+  const searchResults = await fetch("https://links.papareact.com/isz").then(
+    (res) => res.json()
+  );
+
+  return {
+    props: {
+      searchResults,
+    },
+  };
+}

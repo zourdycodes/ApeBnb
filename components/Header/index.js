@@ -12,7 +12,7 @@ import {
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 
-export const Header = () => {
+export const Header = ({ placeholder }) => {
   const [searchInput, setSearchInput] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -62,7 +62,7 @@ export const Header = () => {
       <div className="flex items-center md:border-2 rounded-full py-2 md:shadow-sm">
         <input
           type="text"
-          placeholder="Search your lovable spot!"
+          placeholder={placeholder ? placeholder : "Search your lovable spot!"}
           className=" flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600 placeholder-gray-400"
           value={searchInput}
           onChange={({ target }) => setSearchInput(target.value)}
