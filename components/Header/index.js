@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/dist/client/router";
 import { DateRangePicker } from "react-date-range";
 import {
   SearchIcon,
@@ -16,10 +17,23 @@ export const Header = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [numberGuests, setNumberGuests] = useState(1);
+  const router = useRouter();
 
   const handleSelect = (ranges) => {
     setStartDate(ranges.selection.startDate);
     setEndDate(ranges.selection.endDate);
+  };
+
+  const search = () => {
+    router.push({
+      pathname: "/search",
+      query: {
+        location: searchInput,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        numberGuests,
+      },
+    });
   };
 
   // config date-range
@@ -32,7 +46,10 @@ export const Header = () => {
   return (
     <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md py-5 px-5 md:px-10">
       {/* LEFT */}
-      <div className="relative flex items-center h-10 cursor-pointer my-auto">
+      <div
+        className="relative flex items-center h-10 cursor-pointer my-auto"
+        onClick={() => router.push("/")}
+      >
         <Image
           src="https://links.papareact.com/qd3"
           layout="fill"
@@ -93,7 +110,9 @@ export const Header = () => {
             >
               Cancel
             </button>
-            <button className="flex-grow text-red-400">Search</button>
+            <button onClick={search} className="flex-grow text-red-400">
+              Search
+            </button>
           </div>
         </div>
       )}
