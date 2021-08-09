@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 import {
   SearchIcon,
@@ -8,6 +9,8 @@ import {
 } from "@heroicons/react/solid";
 
 export const Header = () => {
+  const [searchInput, setSearchInput] = useState("");
+
   return (
     <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md py-5 px-5 md:px-10">
       {/* LEFT */}
@@ -26,6 +29,8 @@ export const Header = () => {
           type="text"
           placeholder="Search your lovable spot!"
           className=" flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600 placeholder-gray-400"
+          value={searchInput}
+          onChange={({ target }) => setSearchInput(target.value)}
         />
         <SearchIcon className="hidden md:inline-flex h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer md:mx-2" />
       </div>
@@ -40,6 +45,8 @@ export const Header = () => {
           <UserCircleIcon className="h-6 cursor-pointer" />
         </div>
       </div>
+
+      {/* Date Range Picker Component */}
     </header>
   );
 };
