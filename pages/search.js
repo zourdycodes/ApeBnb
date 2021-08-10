@@ -1,4 +1,4 @@
-import { Footer, Header, ResultCards } from "../components";
+import { Footer, Header, MapComponent, ResultCards } from "../components";
 import { useRouter } from "next/dist/client/router";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
@@ -74,7 +74,11 @@ const Search = ({ searchResults }) => {
             </div>
           )}
         </section>
-        {/* RIGHT CONTENT */}
+        {/* MAP GL BOX CONTENT */}
+
+        <section className="hidden xl:inline-flex xl:min-w-[600px]">
+          <MapComponent />
+        </section>
       </main>
 
       <Footer />
